@@ -1,0 +1,5 @@
+import { LegacyContentPanel } from "./LegacyPageLayout.jsx";
+
+export default function FeeResultPanel({ faculty = "", department = "", mode = "", degree = "", type = "", paymentType = "", installmentType = "", items = [], total = 0, currency = "N" }) {
+  return <LegacyContentPanel pageClass="setup-fee-result-page__content-card"><div className="setup-fee-result-page__summary"><dl><dt>Faculty:</dt><dd>{faculty}</dd><dt>Department:</dt><dd>{department}</dd><dt>Mode of Study:</dt><dd>{mode}</dd><dt>Degree:</dt><dd>{degree}</dd><dt>Type:</dt><dd>{type}</dd><dt>Payment Type:</dt><dd>{paymentType}</dd>{installmentType ? <><dt>Installmental Type:</dt><dd>{installmentType}</dd></> : null}</dl></div><table className="table setup-fee-result-page__table"><tbody><tr className="head"><th>Fee</th><th>Amount ({currency})</th></tr>{items.map((item, index) => <tr key={`${item.label}-${index}`}><td>{item.label || ""}</td><td>{Number(item.amount || 0).toLocaleString()}</td></tr>)}<tr className="setup-fee-result-page__total"><td><strong>TOTAL</strong></td><td><strong>{Number(total || 0).toLocaleString()}</strong></td></tr></tbody></table></LegacyContentPanel>;
+}
